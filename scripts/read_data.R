@@ -66,6 +66,16 @@ burn_trials <- burn_trials %>%
   rename(status = sample_number) %>%
   mutate(status = ifelse(status == 1, "igniter", "ignitee"))
 
+###################################################################################
+# Dry down
+###################################################################################
+
+time_wp <- drydown %>%
+  mutate(date_time = mdy_hms(paste(drydown$date, drydown$time))) %>%
+  group_by(sample_id) %>%
+  mutate(hours = as.numeric(difftime(date_time, first(date_time), units = "hours")),
+         hours = round(hours, 2)) 
+  
 ################################################################################
 # Alldata
 ################################################################################

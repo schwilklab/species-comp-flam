@@ -1,17 +1,54 @@
-sample_id,wp,hours,out_time,date
-DCK19,0.28,76,04:08:00 PM,06/10/25
-DCK13,0.12,76,04:09:00 PM,06/10/25
-DCK05,0.25,76,04:13:00 PM,06/10/25
-DCK04,0.27,76,04:14:00 PM,06/10/25
-UN,0.23,76,04:15:00 PM,06/10/25
-DCK01,0.21,76,04:20:00 PM,06/10/25
-DCK06,0.28,76,04:21:00 PM,06/10/25
-DCK13,0.16,76,04:22:00 PM,06/10/25
-DCK02,0.14,25,06:31:00 PM,06/10/25
-DCK28,0.19,25,06:32:00 PM,06/10/25
-DCK03,0.28,25,06:33:00 PM,06/10/25
-DCK32,0.2,25,06:38:00 PM,06/10/25
-DCK321,0.19,25,06:40:00 PM,06/10/25
-DCK17,0.29,25,06:41:00 PM,06/10/25
-DCK18,0.45,25,06:45:00 PM,06/10/25
-DCK24,0.12,25,06:47:00 PM,06/10/25
+sample_id,spcode,species,time,date,wp
+mesquite1,PRGL2,Prosopis glandulosa,02:13:00 PM,06/15/2025,0.25
+mesquite2,PRGL2,Prosopis glandulosa,02:20:00 PM,06/15/2025,0.19
+mesquite3,PRGL2,Prosopis glandulosa,02:23:00 PM,06/15/2025,0.15
+mesquite4,PRGL2,Prosopis glandulosa,02:25:00 PM,06/15/2025,0
+mesquite5,PRGL2,Prosopis glandulosa,02:30:00 PM,06/15/2025,0.12
+mesquite1,PRGL2,Prosopis glandulosa,03:35:00 PM,06/15/2025,0.65
+mesquite2,PRGL2,Prosopis glandulosa,03:37:00 PM,06/15/2025,1.61
+mesquite3,PRGL2,Prosopis glandulosa,03:40:00 PM,06/15/2025,0.75
+mesquite4,PRGL2,Prosopis glandulosa,03:42:00 PM,06/15/2025,0.58
+mesquite5,PRGL2,Prosopis glandulosa,03:36:00 PM,06/15/2025,0.75
+mesquite1,PRGL2,Prosopis glandulosa,06:43:00 PM,06/15/2025,3.59
+mesquite2,PRGL2,Prosopis glandulosa,06:46:00 PM,06/15/2025,3.85
+mesquite3,PRGL2,Prosopis glandulosa,06:48:00 PM,06/15/2025,2.83
+mesquite4,PRGL2,Prosopis glandulosa,06:49:00 PM,06/15/2025,2.3
+mesquite5,PRGL2,Prosopis glandulosa,06:50:00 PM,06/15/2025,2.59
+mesquite1,PRGL2,Prosopis glandulosa,10:24:00 PM,06/15/2025,4.78
+mesquite2,PRGL2,Prosopis glandulosa,10:26:00 PM,06/15/2025,4.95
+mesquite3,PRGL2,Prosopis glandulosa,10:28:00 PM,06/15/2025,3.55
+mesquite4,PRGL2,Prosopis glandulosa,10:30:00 PM,06/15/2025,3.51
+mesquite5,PRGL2,Prosopis glandulosa,10:32:00 PM,06/15/2025,3.32
+mesquite1,PRGL2,Prosopis glandulosa,05:19:00 AM,06/16/2025,8.09
+mesquite2,PRGL2,Prosopis glandulosa,05:21:00 AM,06/16/2025,7.41
+mesquite3,PRGL2,Prosopis glandulosa,05:23:00 AM,06/16/2025,4.79
+mesquite4,PRGL2,Prosopis glandulosa,05:25:00 AM,06/16/2025,4.65
+mesquite5,PRGL2,Prosopis glandulosa,05:27:00 AM,06/16/2025,4.43
+mesquite3,PRGL2,Prosopis glandulosa,11:36:00 AM,06/16/2025,7
+mesquite4,PRGL2,Prosopis glandulosa,11:38:00 AM,06/16/2025,6.12
+mesquite5,PRGL2,Prosopis glandulosa,11:40:00 AM,06/16/2025,7
+JUPI1,JUPI,Juniperus pinchotii,04:45:00 AM,06/11/2025,0.25
+JUPI2,JUPI,Juniperus pinchotii,04:47:00 AM,06/11/2025,0.27
+JUPI3,JUPI,Juniperus pinchotii,04:49:00 AM,06/11/2025,0.41
+JUPI4,JUPI,Juniperus pinchotii,04:50:00 AM,06/11/2025,0.17
+JUPI5,JUPI,Juniperus pinchotii,04:51:00 AM,06/11/2025,0.42
+JUPI1,JUPI,Juniperus pinchotii,07:25:00 PM,06/11/2025,2.66
+JUPI2,JUPI,Juniperus pinchotii,07:28:00 PM,06/11/2025,2.48
+JUPI3,JUPI,Juniperus pinchotii,07:30:00 PM,06/11/2025,2.99
+JUPI4,JUPI,Juniperus pinchotii,07:32:00 PM,06/11/2025,2.34
+JUPI5,JUPI,Juniperus pinchotii,07:37:00 PM,06/11/2025,2.94
+JUPI6,JUPI,Juniperus pinchotii,04:08:00 PM,06/10/2025,0.28
+JUPI7,JUPI,Juniperus pinchotii,04:09:00 PM,06/10/2025,0.12
+JUPI8,JUPI,Juniperus pinchotii,04:13:00 PM,06/10/2025,0.25
+JUPI9,JUPI,Juniperus pinchotii,04:14:00 PM,06/10/2025,0.27
+JUPI10,JUPI,Juniperus pinchotii,04:15:00 PM,06/10/2025,0.23
+JUPI6,JUPI,Juniperus pinchotii,02:50:00 PM,06/12/2025,5.28
+JUPI7,JUPI,Juniperus pinchotii,02:52:00 PM,06/12/2025,5.28
+JUPI8,JUPI,Juniperus pinchotii,02:55:00 PM,06/12/2025,4.5
+JUPI9,JUPI,Juniperus pinchotii,02:57:00 PM,06/12/2025,4.99
+JUPI10,JUPI,Juniperus pinchotii,05:41:00 PM,06/12/2025,5.78
+JUPI6,JUPI,Juniperus pinchotii,05:55:00 PM,06/13/2025,6.11
+JUPI7,JUPI,Juniperus pinchotii,05:57:00 PM,06/13/2025,7.01
+JUPI8,JUPI,Juniperus pinchotii,06:18:00 PM,06/13/2025,5.64
+JUPI9,JUPI,Juniperus pinchotii,06:35:00 PM,06/13/2025,5.93
+JUPI10,JUPI,Juniperus pinchotii,07:01:00 PM,06/13/2025,6.23
