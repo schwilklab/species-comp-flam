@@ -86,7 +86,8 @@ alldata <- samples %>%
   filter(! sample_id %in%  c("DCK08", "DCK13", "DCK23",
                         "DCK30", "DCK32", "DCK63",
                         "DCK64", "DCK65", "DCK70")) %>%
-  mutate(ignite_others = ifelse(ignite_others == "yes", 1, 0))
+  mutate(ignite_others = ifelse(ignite_others == "yes", 1, 0)) %>%
+  mutate(species_combination = str_sub(combination, 1, 2))
 
 
 
