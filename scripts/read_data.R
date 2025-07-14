@@ -87,7 +87,7 @@ alldata <- samples %>%
                         "DCK30", "DCK32", "DCK63",
                         "DCK64", "DCK65", "DCK70")) %>%
   mutate(ignite_others = ifelse(ignite_others == "yes", 1, 0)) %>%
-  mutate(species_combination = str_sub(combination, 1, 2))
+  mutate(hours_combination = str_sub(combination, 4, 8))
 
 
 
