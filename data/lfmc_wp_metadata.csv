@@ -1,0 +1,9 @@
+variable_name,class,unit,description
+sample_id,character,,id for each individual sample
+fresh_mass,integer,gram,fresh mass of LFMC sample
+dry_mass,integer,gram,dry mass of LFMC sample
+wp,integer,MPa,water potential
+hours,integer,hr,minimum bench drying hours to reach targeted water potential
+combination,character,,combination of hours of bench drying of species mixture
+species_combination,character,,"the order of burning of species combination, the first one ignited first"
+updated_combination,character,,make a new column to leave out the extreme water potential

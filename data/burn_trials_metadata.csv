@@ -1,0 +1,24 @@
+variable_name,class,unit,description
+date,Date,,burning date
+trial_id,integer,,trail number
+sample1_id,character,,sample id for the first sample
+sample2_id,character,,sample id for the second sample
+start_time,Time,,trial start time
+sample1_mass_pre,integer,gram,Pre-burning fresh mass of the first sample that got ignited first
+sample2_mass_pre,integer,gram,Pre-burning fresh mass of the second sample
+sample1_mass_post,integer,gram,Post-burning fresh mass of the first sample 
+sample2_mass_post,integer,gram,Post-burning fresh mass of the second sample 
+disc1_pre,integer,Celsius,Pre burning disc 1 temperature
+disc2_pre,integer,Celsius,Pre burning disc 2 temperature
+ignition_delay,integer,seconds,time to ignition
+flame_duration,integer,seconds,Flame duration 
+flame_height,integer,feet,Flame height
+disc1_post,integer,Celsius,Post burning disc 1 temperature
+disc2_post,integer,Celsius,Post burning disc 2 temperature
+vol_burned_sample1,integer,percentage,"Volume burned in percentage of the first sample, visually estimated"
+vol_burned_sample2,integer,percentage,"Volume burned in percentage of the second sample, visually estimated"
+max_temp,integer,Celsius,Maximum temperature during flame combustion of the discs
+self_ignition,integer,,whether there was self ignition or not
+self_ig_start,Time,,self ignition start time
+ignite_others,character,,whether ignited the second sample or not
+notes,character,,

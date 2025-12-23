@@ -1,0 +1,4 @@
+variable_name,class,unit,description
+sample_id,character,,id for each individual sample
+spcode,character,,USDA species code for studied species
+species,character,,Scientific name of species studied
