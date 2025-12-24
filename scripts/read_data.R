@@ -1,5 +1,5 @@
 # read-data.R
-# Dylan Schwilk
+# Azaj Mahmud and Dylan Schwilk
 
 library(readr)
 library(dplyr)
@@ -41,11 +41,30 @@ drydown <- read_csv("./data/dry_down.csv")
 ## Cleaning the data
 ##############################################################################
 
+###############################################################################
+## Water potential and LFMC
+##############################################################################
+
 wp_fmc <- water_potentials_fmc %>%
   mutate(wp = -1*wp) %>%
   mutate(fmc = ((fresh_mass - dry_mass)/dry_mass)*100) %>%
   mutate(fmc = round(fmc, 2)) %>%
   select(- fresh_mass, - dry_mass)
+
+###################################################################################
+# Dry down
+###################################################################################
+
+time_wp <- drydown %>%
+  mutate(date_time = mdy_hms(paste(drydown$date, drydown$time))) %>%
+  group_by(sample_id) %>%
+  mutate(hours = as.numeric(difftime(date_time, first(date_time), units = "hours")),
+         hours = round(hours, 2)) 
+
+
+###############################################################################
+## Burn Trials
+##############################################################################
 
 burn_trials <- burn_trials %>%
   mutate(heat1 = (max_temp - disc1_pre) * MASS_DISK_1 * SPECIFIC_HEAT_AL,
@@ -65,16 +84,6 @@ burn_trials <- burn_trials %>%
   rename(sample_id = id) %>%
   rename(status = sample_number) %>%
   mutate(status = ifelse(status == 1, "igniter", "ignitee"))
-
-###################################################################################
-# Dry down
-###################################################################################
-
-time_wp <- drydown %>%
-  mutate(date_time = mdy_hms(paste(drydown$date, drydown$time))) %>%
-  group_by(sample_id) %>%
-  mutate(hours = as.numeric(difftime(date_time, first(date_time), units = "hours")),
-         hours = round(hours, 2)) 
   
 ################################################################################
 # Alldata
@@ -83,12 +92,37 @@ time_wp <- drydown %>%
 alldata <- samples %>%
   left_join(wp_fmc) %>%
   left_join(burn_trials) %>%
-  filter(! sample_id %in%  c("DCK08", "DCK13", "DCK23",
+  filter(! sample_id %in%  c("DCK23",
                         "DCK30", "DCK32", "DCK63",
                         "DCK64", "DCK65", "DCK70")) %>%
   mutate(ignite_others = ifelse(ignite_others == "yes", 1, 0)) %>%
-  mutate(hours_combination = str_sub(combination, 4, 8))
+  mutate(hours_combination = str_sub(combination, 4, 8)) %>%
+  filter(self_ignition != 1) %>%
+  filter(updated_combination != "out_of_range")
+
+#################################################################################
+# The next part is for figures
+#################################################################################
+
+desired_combinations <- c("10-10","14-14", "48-48","72-72", "2-2", "6-6", "8-8", "30-30", "10-2", "14-6", "48-8", "72-30",
+                          "2-10", "6-14", "8-48","30-72")
+drought_labels <- c("2-2"   = "Low", "10-10" = "Low", "2-10"  = "Low", "10-2"  = "Low",
+                    "6-6"   = "Moderate", "14-14" = "Moderate", "6-14"  = "Moderate", "14-6"  = "Moderate",
+                    "8-8"   = "High", "48-48" = "High", "8-48"  = "High", "48-8"  = "High",
+                    "30-30" = "Extreme", "72-72" = "Extreme", "30-72" = "Extreme","72-30" = "Extreme")
+
+alldata$drought_condition <- drought_labels[as.character(alldata$hours_combination)]
+
+alldata$drought_condition <- factor(
+  alldata$drought_condition,
+  levels = c("Low", "Moderate", "High", "Extreme"))
 
 
+############################################################################
+# Cleasning environments
+############################################################################
+
+rm(burn_trials, drydown, MASS_DISK_1, MASS_DISK_2, samples, SPECIFIC_HEAT_AL,
+   time_wp, water_potentials_fmc, wp_fmc, drought_labels, desired_combinations)
 
 
