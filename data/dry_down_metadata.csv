@@ -1,0 +1,7 @@
+variable_name,class,unit,description
+sample_id,character,,id for each individual sample
+spcode,character,,USDA species code for studied species
+species,character,,Scientific name of species studied
+time,Time,,Measurement time
+date,Date,,Date of the measurement 
+wp,integer,Mpa,Water potential
