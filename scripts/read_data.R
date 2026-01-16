@@ -24,7 +24,6 @@ SPECIFIC_HEAT_AL <- 0.921 # in J/g
 MASS_DISK_1 <- 52.91  # 
 MASS_DISK_2 <- 53.21 # g
 
-
 ###############################################################################
 ## Read all the data files
 ###############################################################################
@@ -75,7 +74,7 @@ burn_trials <- burn_trials %>%
 # Correct heat release to set lowest value at 0 (all relative anyway)
 burn_trials$heat_release_j <- burn_trials$heat_release_j - min(burn_trials$heat_release_j, na.rm=TRUE)
 
-burn_trials <- burn_trials %>%
+burn_trials_longer <- burn_trials %>%
   rename(sample1_volume_burn = vol_burned_sample1,
     sample2_volume_burn = vol_burned_sample2) %>%
   pivot_longer(cols = starts_with("sample"),
@@ -91,15 +90,15 @@ burn_trials <- burn_trials %>%
 
 alldata <- samples %>%
   left_join(wp_fmc) %>%
-  left_join(burn_trials) %>%
+  left_join(burn_trials_longer) %>%
   filter(! sample_id %in%  c("DCK23",
                         "DCK30", "DCK32", "DCK63",
                         "DCK64", "DCK65", "DCK70")) %>%
+  filter(updated_combination != "out_of_range") %>%
   mutate(ignite_others = ifelse(ignite_others == "yes", 1, 0)) %>%
-  mutate(hours_combination = str_sub(combination, 4, 8)) %>%
-  filter(self_ignition != 1) %>%
-  filter(updated_combination != "out_of_range")
-
+  mutate(hours_combination = str_sub(updated_combination, 4, 8)) %>%
+  filter(self_ignition != 1)
+  
 #################################################################################
 # The next part is for figures
 #################################################################################
@@ -117,12 +116,24 @@ alldata$drought_condition <- factor(
   alldata$drought_condition,
   levels = c("Low", "Moderate", "High", "Extreme"))
 
+#################################################################################
+# This summarised data for the table for supplementary info
+#################################################################################
+
+sum_data <- alldata %>%
+  group_by(drought_condition, species_combination) %>%
+  summarise(
+    mean_wp = mean(wp, na.rm = TRUE),
+    min_wp = min(wp, na.rm = TRUE),
+    max_wp = max(wp, na.rm = TRUE)) %>%
+  mutate(mean_wp = round(mean_wp, 2))
+
 
 ############################################################################
 # Cleasning environments
 ############################################################################
 
-rm(burn_trials, drydown, MASS_DISK_1, MASS_DISK_2, samples, SPECIFIC_HEAT_AL,
+rm(burn_trials_longer, drydown, MASS_DISK_1, MASS_DISK_2, samples, SPECIFIC_HEAT_AL,
    time_wp, water_potentials_fmc, wp_fmc, drought_labels, desired_combinations)
 
 

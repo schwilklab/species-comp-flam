@@ -8,8 +8,8 @@ library(ggplot2)
 library(gridExtra)
 library(scales)
 library(extrafont)
-font_import(pattern = "Helvetica")  # call once. Provides 
-loadfonts()
+#font_import(pattern = "Helvetica")  # call once. Provides 
+#loadfonts()
 
 # constants and theme for publications
 #schwilkcolors <- c("#D68D18", "#836B43", "#A0AE6A", "#362908", "#EC4E15")
@@ -23,7 +23,7 @@ smsize <- textsize-2
 axissz <- smsize
 pt2mm <- 0.35146
 smsize.mm <- smsize*pt2mm
-fontfamily = "Helvetica"
+fontfamily = "sans"
 col2 <- 16 # cm  -- adjust for journal specfic column sizes.
 col1 <- 8.0 # cm -- make sure to indicate units when using ggsave!
 beamer_height <- 7 #cm
