@@ -23,7 +23,7 @@
 
 ## Data
 
-- Each data file in data has as an associated machine
+- Each data file in ./data/ has as an associated machine
   readable metadata file. If a data file named
   lfmc_wp.csv, then it has an associated metadata file as
   lfmc_wp_metadata.csv. The metadata file describes each
