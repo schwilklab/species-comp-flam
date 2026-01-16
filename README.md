@@ -32,8 +32,8 @@
 
 ## Data analysis and scripts
 
-All the data analyses were performed in R with all scripts in
-scripts/. To reproduce the results, please read run_all.R script. The task need to perform before
-running each script is documented at the beginning of each script.
+- All the data analyses were performed in R with all scripts in
+  scripts/. To reproduce the results, please read run_all.R script. The task need to perform before
+  running each script is documented at the beginning of each script.
 
 
