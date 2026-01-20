@@ -23,7 +23,7 @@
 
 ## Data
 
-- Each data file in data has as an associated machine
+- Each data file in ./data/ has as an associated machine
   readable metadata file. If a data file named
   lfmc_wp.csv, then it has an associated metadata file as
   lfmc_wp_metadata.csv. The metadata file describes each
@@ -32,8 +32,8 @@
 
 ## Data analysis and scripts
 
-All the data analyses were performed in R with all scripts in
-scripts/. To reproduce the results, please read run_all.R script. The task need to perform before
-running each script is documented at the beginning of each script.
+- All the data analyses were performed in R with all scripts in
+  scripts/. To reproduce the results, please read run_all.R script. The task need to perform before
+  running each script is documented at the beginning of each script.
 
 
