@@ -83,8 +83,41 @@ ggsave("./results/ign_delay.pdf", plot = ign_delay,
        height = 160, width = 180, units = "mm", dpi = 300) 
 
 ############################################################################
+# Tables, first ignition probability
+############################################################################
+
+print(xtable::xtable(ig_mod_anova), type = "html", file = "./results/ig_mod_anova.html")
+
+ig_mod_emm_data_frame <- as.data.frame(ig_mod_emm)
+
+class(ig_mod_emm_data_frame) <- "data.frame"
+
+row.names(ig_mod_emm_data_frame) <- NULL
+
+print(xtable::xtable(ig_mod_emm_data_frame, digits = c(0, 0, 0, 2, 2, 0, 2, 2)),
+  type = "html", file = "./results/emmeans_ig_mod_table.html", include.rownames = FALSE)
+
+############################################################################
+# Now heat release
+############################################################################
+
+print(xtable::xtable(heat_release_anova), type = "html", 
+      file = "./results/heat_release_mod_anova.html")
+
+heat_release_mod_emm_data_frame <- as.data.frame(heat_release_emm)
+
+class(heat_release_mod_emm_data_frame) <- "data.frame"
+
+row.names(heat_release_mod_emm_data_frame) <- NULL
+
+print(xtable::xtable(heat_release_mod_emm_data_frame, digits = c(0, 0, 0, 2, 2, 0, 2, 2, 2)),
+      type = "html", file = "./results/emmeans_heat_release_mod_table.html", 
+      include.rownames = FALSE)
+
+############################################################################
 # Cleasning environments
 ############################################################################
 
-rm(figure2, figure3, ign_delay)
+rm(figure2, figure3, ign_delay, heat_release_anova, heat_release_mod_emm_data_frame,
+   heat_release_emm, ig_mod_anova, ig_mod_emm_data_frame, ig_mod_emm)
 
