@@ -343,7 +343,7 @@ ggsave("./results/figure41.pdf", plot = figure41,
 ############################################################################
 
 rm(data_for_fig1, cmc_ig, cmc_heat_release, wp_ig, wp_heat_release,
-   combined_cmc_ig, combined_water_status_flam, figure3, figure4, dry_down, 
+   combined_cmc_ig, combined_water_status_flam, figure3, dry_down, 
    supp_figure1, supp_figure2, sum_data, flam_pca, heat_release_anova,
    heat_release_mod_emm_data_frame, heat_release_emm, ig_mod_anova, 
    ig_mod_emm_data_frame, ig_mod_emm)

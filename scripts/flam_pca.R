@@ -28,7 +28,7 @@ flam_pca <- prcomp(pca_data[,-(1:2)],
 summary(flam_pca) 
 flam_loadings <- flam_pca$rotation[ ,(1:2)] 
 flam_loadings
-biplot(flam_pca)
+#biplot(flam_pca)
 
 ###############################################################################
 # Assigning PCs to pca_data and then merging with alldata
