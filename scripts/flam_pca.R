@@ -8,11 +8,12 @@
 
 pca_data <-  burn_trials %>%
   filter(self_ignition != 1) %>%
+  left_join(hobos_wider) %>%
   mutate(vol_burned = (vol_burned_sample1 + vol_burned_sample2)/2) %>%
   left_join(hobos_wider) %>%
   dplyr::select(sample1_id, sample2_id,
          vol_burned, flame_height, heat_release_j, flame_duration, dur_100,
-         peak_temp, degsec_100, ignition_delay)
+         peak_temp, degsec_100, time_to_max, ignition_delay)
 
 dim(pca_data)
 any(is.na(pca_data)) 
@@ -27,11 +28,10 @@ flam_pca <- prcomp(pca_data[,-(1:2)],
 summary(flam_pca) 
 flam_loadings <- flam_pca$rotation[ ,(1:2)] 
 flam_loadings
-#biplot(flam_pca)
+biplot(flam_pca)
 
 ###############################################################################
-# Assigning PC1 to pca_data_2022 and then merging with alldata_2022
-# data set for doing rest of the analysis.
+# Assigning PCs to pca_data and then merging with alldata
 ###############################################################################
 
 pca_data$PC1 <- flam_pca$x[ ,1]
@@ -45,9 +45,21 @@ pca_data <- pca_data %>%
   rename(status = sample_number) %>%
   mutate(status = ifelse(status == 1, "igniter", "ignitee"))
 
+
+pca_data <- pca_data %>%
+  select(sample_id, vol_burned, dur_100, peak_temp, degsec_100, time_to_max, PC1, PC2) %>%
+  distinct(sample_id, .keep_all = TRUE)
+
+alldata_unique <- alldata %>% distinct(sample_id, .keep_all = TRUE)
+
+final_data <- pca_data %>%
+  right_join(alldata, by = "sample_id") %>%
+  select(- volume_burn)
+
 ############################################################################
-# Cleasning environments
+# Cleaning environments
 ############################################################################
+
 rm(flam_loadings, burn_trials, hobos_wider, pca_data)
 
 

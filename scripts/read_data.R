@@ -36,6 +36,8 @@ burn_trials <- read_csv("./data/burn_trials.csv")
 
 drydown <- read_csv("./data/dry_down.csv")
 
+data_for_fig1 <- read_csv("./data/JUPI_PRGL2_2023_2024.csv")
+
 ###############################################################################
 ## Cleaning the data
 ##############################################################################
@@ -66,8 +68,8 @@ time_wp <- drydown %>%
 ##############################################################################
 
 burn_trials <- burn_trials %>%
-  mutate(heat1 = (max_temp - disc1_pre) * MASS_DISK_1 * SPECIFIC_HEAT_AL,
-         heat2 = (max_temp - disc2_pre) * MASS_DISK_2 * SPECIFIC_HEAT_AL,
+  mutate(heat1 = (disc1_post - disc1_pre) * MASS_DISK_1 * SPECIFIC_HEAT_AL,
+         heat2 = (disc2_pre - disc2_pre) * MASS_DISK_2 * SPECIFIC_HEAT_AL,
          heat_release_j = (heat1 + heat2)/2, # average heat release of two disks
          pre_burning_temp = (disc1_pre + disc2_pre)/2)
 
@@ -125,9 +127,19 @@ sum_data <- alldata %>%
   summarise(
     mean_wp = mean(wp, na.rm = TRUE),
     min_wp = min(wp, na.rm = TRUE),
-    max_wp = max(wp, na.rm = TRUE)) %>%
+    max_wp = max(wp, na.rm = TRUE),
+    sd_wp = sd (wp, na.rm = TRUE)) %>%
   mutate(mean_wp = round(mean_wp, 2))
 
+#################################################################################
+# This summarised data for the dry down figure for supplementary info
+#################################################################################
+
+dry_down <- drydown %>%
+  mutate(date_time = mdy_hms(paste(drydown$date, drydown$time))) %>%
+  group_by(sample_id) %>%
+  mutate(hours = as.numeric(difftime(date_time, first(date_time), units = "hours")),
+         hours = round(hours, 2))
 
 ############################################################################
 # Cleasning environments

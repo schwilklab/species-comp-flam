@@ -124,6 +124,8 @@ hobo_temp_sum <- hobos_long %>%  filter(sample1_id != "NA") %>%
             degsec_100= sum(temperature[temperature >100]),
             peak_temp = max(temperature),
             peak_time = time[which(peak_temp == temperature)[1]],
+            time_to_max = as.numeric(
+              time[which.max(temperature)] - first(time), units = "secs"),
             num_NA = sum(is.na(temperature))) %>% ungroup()
 
 dim(burn_trials) 
@@ -139,7 +141,8 @@ hobos_wider <- hobo_temp_sum %>%
   group_by(sample1_id) %>%
   summarise(dur_100 = mean(dur_100),
             peak_temp = max(peak_temp),
-            degsec_100 = max(degsec_100))
+            degsec_100 = max(degsec_100),
+            time_to_max = mean(time_to_max))
 
 dim(hobos_wider)
 
