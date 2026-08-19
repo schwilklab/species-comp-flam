@@ -4,18 +4,20 @@ source("./scripts/ggplot_theme.R")
 
 library(patchwork)
 
-
+############################################################################
+# Only figure 2 and Figure 3 is for the manuscript, rest of them are
+# for supplementary
 #############################################################################
-# Proability of igniting neighbours
+# Probability of igniting neighbors
 #############################################################################
 
 
-figure3 <- ggplot(filter(alldata, status == "ignitee"),
+figure2 <- ggplot(filter(alldata, status == "ignitee"),
                   aes(x = drought_condition, y = ignite_others, group = species_combination)) +
   geom_jitter(height = 0.05, width = 0.1, alpha = 0.7, size = 2) +
   facet_wrap(~ species_combination) +
   labs(y = "Ignition of neighboring fuel",
-       x = "Drought condition",
+       x = "Drought treatments",
        color = "Species combination") +
   scale_y_continuous(breaks = c(0,1),
                      labels = c("No","Yes"),
@@ -25,18 +27,18 @@ figure3 <- ggplot(filter(alldata, status == "ignitee"),
         legend.text = element_text(face = "italic"),
         legend.position = c(0.85, 0.7),
         axis.text.x = element_text(hjust = 0.5, vjust = 1, face = "bold"),
-        axis.text.y = element_text(face = "bold"),
+        axis.text.y = element_text(face = "bold", size = 12),
         axis.title = element_text(face = "bold"),
         legend.title = element_blank())
 
-ggsave("./results/figure3.pdf", plot = figure3, 
+ggsave("./results/fig2.pdf", plot = figure2, 
        height = 160, width = 180, units = "mm", dpi = 300) 
 
 #############################################################################
 # Heat Release
 ##############################################################################
 
-figure4 <- ggplot(filter(alldata, status == "ignitee" & self_ignition != 1), 
+figure3 <- ggplot(filter(alldata, status == "ignitee" & self_ignition != 1), 
                   aes(x = drought_condition, y = heat_release_j)) +
   geom_boxplot(color = "black",
                fill = "white",
@@ -44,14 +46,14 @@ figure4 <- ggplot(filter(alldata, status == "ignitee" & self_ignition != 1),
   geom_jitter(color = "black",
               size = 2, alpha = 0.5) +
   facet_wrap(~ species_combination) +
-  labs(x = "Drought condition", y = "Heat release (J)") +
+  labs(x = "Drought treatments", y = "Heat release (J)") +
   pubtheme +
   theme(strip.text = element_text(face = "italic", size = 10),
         axis.text.x = element_text(hjust = 0.5, vjust = 1, face = "bold"),
         axis.text.y = element_text(face = "bold"),
         axis.title = element_text(face = "bold"))
 
-ggsave("./results/figure4.pdf", plot = figure4, 
+ggsave("./results/fig3.pdf", plot = figure3, 
        height = 160, width = 180, units = "mm", dpi = 300) 
 
 #############################################################################
@@ -282,7 +284,7 @@ cmc_heat_release1 <- ggplot(data_for_fig1, aes(cmc, heat_release_j/1000, color =
 
 combined_water_status_flam1 <-   (wp_heat_release1 | cmc_heat_release1) / (combined_cmc_ig1)
 
-ggsave("./results/figure1_pres.png", plot = combined_water_status_flam1,
+ggsave("./results/figure1_pres.pdf", plot = combined_water_status_flam1,
        height = 7.25, width = 7.25, units = "in", dpi = 300)
 
 figure31 <- ggplot(filter(alldata, status == "ignitee"),
@@ -307,7 +309,7 @@ figure31 <- ggplot(filter(alldata, status == "ignitee"),
         axis.title = element_text(face = "bold"),
         legend.title = element_blank())
 
-ggsave("./results/figure31.png", plot = figure31, 
+ggsave("./results/figure31.pdf", plot = figure31, 
        height = 160, width = 180, units = "mm", dpi = 300) 
 
 #############################################################################
@@ -332,7 +334,7 @@ figure41 <- ggplot(filter(alldata, status == "ignitee" & self_ignition != 1),
         axis.text.y = element_text(face = "bold"),
         axis.title = element_text(face = "bold"))
 
-ggsave("./results/figure41.png", plot = figure41, 
+ggsave("./results/figure41.pdf", plot = figure41, 
        height = 160, width = 180, units = "mm", dpi = 300) 
 
 
